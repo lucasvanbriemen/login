@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
 <body>
-    <form method="POST" action="/api/login">
+    <form method="POST" action="/login">
         @csrf
         <div>
             <label for="email">Email:</label>
@@ -24,7 +24,7 @@
     <hr>
     <hr>
 
-    <form method="POST" action="/api/register">
+    <form method="POST" action="/register">
         @csrf
         <div>
             <label for="name">Name:</label>
@@ -48,7 +48,7 @@
     <hr>
     <hr>
 
-    <form method="POST" action="/api/logout">
+    <form method="POST" action="/logout">
         @csrf
         <button type="submit">Logout</button>
     </form>
