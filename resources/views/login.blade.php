@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-</head>
-<body>
+<x-login-layout>
+    <x-slot name="title">Login</x-slot>
+    <x-slot name="bodyClass">login-page</x-slot>
+
     <form method="POST" action="/login">
         @csrf
         <div>
@@ -60,17 +55,6 @@
         };
 
         function getUserDetails() {
-            // fetch('/api/login', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            //     },
-            //     body: JSON.stringify(credentials)
-            // })
-            // .then(response => {
-            //     console.log('Login successful:', response);
-
                 fetch('/api/user', {
                     method: 'GET',
                     headers: {
@@ -85,19 +69,9 @@
                 .catch(error => {
                     console.error('Error fetching user details:', error);
                 });
-            // })
-            // .catch(error => {
-            //     console.error('Error logging in:', error);
-            // });
-
-            // await axios.post('/login', credentials);
-
-            // let response = await axios.get('/api/user');
-
-            // console.log(response.data);
         }
 
         getUserDetails();
 
     </script>
-</body>
+</x-login-layout>
