@@ -11,5 +11,7 @@
     <div id="app">
         {{ $slot }}
     </div>
+
+    @vite(['resources/scss/root.scss'])
 </body>
 </html>
