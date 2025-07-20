@@ -3,16 +3,18 @@
     <x-slot name="bodyClass">login-page</x-slot>
 
     <form method="POST" action="/login" class="login-form">
-        @csrf
-        <div>
-            <label for="email">Email:</label>
-            <input id="email" type="email" name="email" required autofocus>
+        <div class="form-contents">
+            @csrf
+            <div>
+                <label for="email">Email:</label>
+                <input id="email" type="email" name="email" required autofocus>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input id="password" type="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
         </div>
-        <div>
-            <label for="password">Password:</label>
-            <input id="password" type="password" name="password" required>
-        </div>
-        <button type="submit">Login</button>
     </form>
 
     <form method="POST" action="/register" class="register-form">
