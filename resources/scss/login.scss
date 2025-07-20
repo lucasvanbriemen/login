@@ -1,3 +1,32 @@
 .login-page {
-    background-color: var(--background);
+    #app {
+        width: calc(100vw - 4rem);
+        height: calc(100vh - 4rem);
+
+        position: relative;
+
+        margin: 2rem;
+
+        display: flex;
+        gap: 2rem;
+
+        form {
+            width: 100%;
+        }
+
+        .login-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+
+            filter: blur(1px);
+
+            z-index: 99;
+
+            border-radius: 1rem 2rem 2rem 1rem;
+        }
+    }
 }

@@ -2,7 +2,7 @@
     <x-slot name="title">Login</x-slot>
     <x-slot name="bodyClass">login-page</x-slot>
 
-    <form method="POST" action="/login">
+    <form method="POST" action="/login" class="login-form">
         @csrf
         <div>
             <label for="email">Email:</label>
@@ -15,11 +15,7 @@
         <button type="submit">Login</button>
     </form>
 
-    <hr>
-    <hr>
-    <hr>
-
-    <form method="POST" action="/register">
+    <form method="POST" action="/register" class="register-form">
         @csrf
         <div>
             <label for="name">Name:</label>
@@ -39,14 +35,7 @@
         <button type="submit">Register</button>
     </form>
 
-    <hr>
-    <hr>
-    <hr>
-
-    <form method="POST" action="/logout">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
+    <img src="{{ asset('images/login-dark.jpg') }}" alt="Login Background" class="login-image">
 
     <script>
         const credentials = {
