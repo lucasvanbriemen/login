@@ -1,0 +1,11 @@
+const modules = import.meta.glob('./**/*.js', { eager: true });
+
+const exportsMap = {
+    theme: './theme.js',
+};
+
+for (const [key, path] of Object.entries(exportsMap)) {
+    window[key] = modules[path].default;
+}
+
+theme.setColors();

@@ -12,6 +12,6 @@
         {{ $slot }}
     </div>
 
-    @vite(['resources/scss/root.scss'])
+    @vite(['resources/scss/root.scss', 'resources/js/root.js'])
 </body>
 </html>
