@@ -33,13 +33,13 @@ export default {
         },
 
         "text": {
-            dark: "#E0E0E0",
-            light: "#000000",
+            dark: "#ebebeb",
+            light: "#70787C",
         },
 
         "text-one": {
-            dark: "#E0E0E0",
-            light: "#000000",
+            dark: "#b5b5b5",
+            light: "#70787C",
         },
     },
 
