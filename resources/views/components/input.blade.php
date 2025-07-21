@@ -8,6 +8,6 @@
 ])
 
 <div class="input-wrapper">
-    <input type="{{ $type }}" name="{{ $name }}" value="{{ $value }}" class="{{ $class }}" id="{{ $id }}" />
+    <input type="{{ $type }}" name="{{ $name }}" value="{{ $value }}" class="{{ $class }}" id="{{ $id }}" placeholder=" " />
     <label for="{{ $id }}">{{ $label }}</label>
 </div>

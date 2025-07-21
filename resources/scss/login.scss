@@ -22,6 +22,10 @@
                 border-radius: 2rem;
                 width: 75%;
             }
+
+            input {
+                background-color: var(--background);
+            }
         }
 
         .login-image {

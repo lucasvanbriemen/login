@@ -9,8 +9,6 @@
             <x-input type="password" name="password" label="Password" required />
             <button type="submit">Login</button>
         </div>
-
-        <x-input />
     </form>
 
     <form method="POST" action="/register" class="register-form">

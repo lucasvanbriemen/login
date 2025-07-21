@@ -1,0 +1,46 @@
+.input-wrapper {
+    position: relative;
+
+    margin-top: 1rem;
+
+    input {
+        width: 100%;
+
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        border: 1px solid var(--border-color);
+
+        background-color: var(--background-one);
+        color: var(--text);
+    }
+
+    input:-webkit-autofill {
+        box-shadow: 0 0 0px 1000px var(--background-one) inset !important;
+        -webkit-text-fill-color: var(--text) !important;
+    }
+
+    label {
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+        pointer-events: none;
+
+        background-color: transparent;
+        color: var(--text);
+        border: none;
+    }
+
+    input:focus+label,
+    input:not(:placeholder-shown)+label {
+        top: 0;
+        font-size: 0.75rem;
+
+        background-color: var(--background-one);
+        border: 1px solid var(--primary);
+        color: var(--text-color);
+
+        padding: 0.25rem 0.5rem;
+        border-radius: 1rem;
+    }
+}

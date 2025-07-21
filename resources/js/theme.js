@@ -32,6 +32,11 @@ export default {
             light: "#E6E6E6",
         },
 
+        "border-color": {
+            dark: "#1F1F1F",
+            light: "#E6E6E6",
+        },
+
         "text": {
             dark: "#ebebeb",
             light: "#70787C",
