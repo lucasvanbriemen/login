@@ -5,34 +5,19 @@
     <form method="POST" action="/login" class="login-form">
         <div class="form-contents">
             @csrf
-            <div>
-                <label for="email">Email:</label>
-                <input id="email" type="email" name="email" required autofocus>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input id="password" type="password" name="password" required>
-            </div>
+            <x-input type="email" name="email" label="Email" required autofocus />
+            <x-input type="password" name="password" label="Password" required />
             <button type="submit">Login</button>
         </div>
+
+        <x-input />
     </form>
 
     <form method="POST" action="/register" class="register-form">
         @csrf
-        <div>
-            <label for="name">Name:</label>
-            <input id="name" type="text" name="name" required>
-        </div>
-
-        <div>
-            <label for="email">Email:</label>
-            <input id="email" type="email" name="email" required>
-        </div>
-
-        <div>
-            <label for="password">Password:</label>
-            <input id="password" type="password" name="password" required>
-        </div>
+        <x-input type="text" name="name" label="Name" required />
+        <x-input type="email" name="email" label="Email" required />
+        <x-input type="password" name="password" label="Password" required />
 
         <button type="submit">Register</button>
     </form>
