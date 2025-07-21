@@ -48,8 +48,5 @@ Route::post('/register', function (Request $request) {
         'password' => bcrypt($data['password']),
     ]);
 
-    return response()->json([
-        'message' => 'User registered successfully!',
-        'user' => $user,
-    ]);
+    Auth::login($user);
 });
