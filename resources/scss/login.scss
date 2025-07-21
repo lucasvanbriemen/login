@@ -21,6 +21,12 @@
                 padding: 2rem;
                 border-radius: 2rem;
                 width: 75%;
+
+                h1 {
+                    color: var(--text);
+                    font-size: 1.5rem;
+                    margin-bottom: 1.5rem;
+                }
             }
 
             input {

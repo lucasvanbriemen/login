@@ -5,6 +5,9 @@
     <form method="POST" action="/login" class="login-form">
         <div class="form-contents">
             @csrf
+
+            <h1>Welcome Back!</h1>
+
             <x-input type="email" name="email" label="Email" required autofocus />
             <x-input type="password" name="password" label="Password" required />
             <button type="submit">Login</button>
