@@ -31,33 +31,8 @@
     <img src="{{ asset('images/login-dark.jpg') }}" alt="Login Background" class="login-image">
 
     <script>
-        const credentials = {
-            email: 'vanbriemenlucas@gmail.com',
-            password: '13November.2006'
-        };
-
-        function getUserDetails() {
-                fetch('/api/user', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                    }
-                })
-                .then(userResponse => userResponse.json())
-                .then(userData => {
-                    console.log('User details:', userData);
-                })
-                .catch(error => {
-                    console.error('Error fetching user details:', error);
-                });
-        }
-
-        getUserDetails();
-
         document.addEventListener('DOMContentLoaded', function() {
             login.init();
         });
-
     </script>
 </x-login-layout>
