@@ -8,12 +8,12 @@ export default {
         },
 
         "primary-dark": {
-            dark: "#3E51C9",
+            dark: "#1919b3",
             light: "#274AB3",
         },
 
         "primary-light": {
-            dark: "#99A7FF",
+            dark: "#1655de",
             light: "#59B5F7",
         },
 
