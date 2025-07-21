@@ -22,6 +22,8 @@
                 border-radius: 2rem;
                 width: 75%;
 
+                box-shadow: 0 0 4rem -3.5rem var(--primary-dark);
+
                 h1 {
                     color: var(--text);
                     font-size: 1.5rem;
@@ -38,7 +40,7 @@
                 border-radius: 1rem;
                 border: none;
                 background-color: var(--primary);
-                color: var(--text-color);
+                color: var(--text);
                 font-weight: bold;
                 cursor: pointer;
 

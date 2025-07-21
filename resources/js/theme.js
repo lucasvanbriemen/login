@@ -39,12 +39,12 @@ export default {
 
         "text": {
             dark: "#ebebeb",
-            light: "#70787C",
+            light: "#1c1c1c",
         },
 
         "text-one": {
             dark: "#b5b5b5",
-            light: "#70787C",
+            light: "#4c4c4d",
         },
     },
 
