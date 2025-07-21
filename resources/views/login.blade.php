@@ -6,7 +6,7 @@
         <div class="form-contents">
             @csrf
 
-            <h1>Welcome Back!</h1>
+            <h1>Welcome Back!<span class='change-form' data-switch="register">Don't have an account?</span></h1>
 
             <x-input type="email" name="email" label="Email" required autofocus />
             <x-input type="password" name="password" label="Password" required />
@@ -15,12 +15,17 @@
     </form>
 
     <form method="POST" action="/register" class="register-form">
-        @csrf
-        <x-input type="text" name="name" label="Name" required />
-        <x-input type="email" name="email" label="Email" required />
-        <x-input type="password" name="password" label="Password" required />
+        <div class="form-contents">
+            @csrf
 
-        <button type="submit">Register</button>
+            <h1>Create an Account<span class='change-form' data-switch="login">Already have an account?</span></h1>
+
+            <x-input type="text" name="name" label="Name" required />
+            <x-input type="email" name="email" label="Email" required />
+            <x-input type="password" name="password" label="Password" required />
+
+            <button type="submit">Register</button>
+        </div>
     </form>
 
     <img src="{{ asset('images/login-dark.jpg') }}" alt="Login Background" class="login-image">
@@ -49,6 +54,10 @@
         }
 
         getUserDetails();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            login.init();
+        });
 
     </script>
 </x-login-layout>

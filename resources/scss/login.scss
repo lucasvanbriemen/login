@@ -5,6 +5,8 @@
 
         position: relative;
 
+        transition: all 0.3s ease-in-out;
+
         margin: 2rem;
 
         display: flex;
@@ -29,6 +31,19 @@
                     font-size: 1.5rem;
                     font-weight: bold;
                     margin-bottom: 1.5rem;
+
+                    .change-form {
+                        cursor: pointer;
+                        font-weight: normal;
+
+                        text-decoration: underline;
+
+                        font-size: 0.7rem;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
                 }
             }
 
@@ -53,7 +68,7 @@
         .login-image {
             position: absolute;
             top: 0;
-            right: 0;
+            left: 50%;
             width: 50%;
             height: 100%;
             object-fit: cover;
@@ -63,6 +78,13 @@
             z-index: 99;
 
             border-radius: 1rem 2rem 2rem 1rem;
+        }
+
+        &.register-form {
+            .login-image {
+                left: 0;
+                border-radius: 2rem 1rem 1rem 2rem;
+            }
         }
     }
 }
