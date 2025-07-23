@@ -35,4 +35,18 @@
             login.init();
         });
     </script>
+
+    <script>
+   fetch('https://login.lucasvanbriemen.nl/api/user', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    }
+})
+.then(response => response.json())
+.then(data => console.log('Success:', data))
+.catch(error => console.error('Error:', error));
+
+</script>
 </x-login-layout>

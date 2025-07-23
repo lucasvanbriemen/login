@@ -6,9 +6,9 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [],
+    'allowed_origins' => ['https://email.lucasvanbriemen.nl'],
 
-    'allowed_origins_patterns' => ['/^https:\/\/([a-z0-9-]+\.)?lucasvanbriemen\.nl$/'],
+    'allowed_origins_patterns' => [],
 
     'allowed_headers' => ['*'],
 
