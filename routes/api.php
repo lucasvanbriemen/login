@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
 
     if (!$request->user()) {
-        return response()->json(['message' => 'Unauthenticated'], 200);
+        return response()->json(['message' => 'Unauthenticated'], 403);
     }
 
     return $request->user();
