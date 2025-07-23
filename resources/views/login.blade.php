@@ -37,7 +37,7 @@
     </script>
 
     <script>
-   fetch('http://localhost:8000/api/user', {
+   fetch('{{ config('app.url') }}/api/user', {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
