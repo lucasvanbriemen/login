@@ -37,7 +37,7 @@
     </script>
 
     <script>
-   fetch('https://login.lucasvanbriemen.nl/api/user', {
+   fetch('http://localhost:8000/api/user', {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
