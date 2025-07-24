@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('login');
@@ -16,6 +18,17 @@ Route::post('/login', function (Request $request) {
         // User authenticated successfully
 
         $request->session()->regenerate();
+
+        $token = Str::random(60);
+        // store the token in the database
+        DB::table('token')->insert([
+            'token' => $token,
+            'user_id' => Auth::id(),
+            'expires_at' => now()->addDay(), // Example expiration time
+        ]);
+
+        // Store the token as a cookie
+        $_COOKIE['auth_token'] = $token;
 
         return response()->json([
             'message' => 'Login successful!',
