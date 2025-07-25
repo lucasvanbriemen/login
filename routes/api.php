@@ -9,6 +9,11 @@ Route::get('/user/token/{token}', function (Request $request, $token) {
     // Get the token from the request
     $token = $request->input('token');
 
+    return response()->json([
+        'message' => 'Token received',
+        'token' => $token,
+    ]);
+
     // Verify the token
     $token = DB::table('token')->where('token', $token)->first();
 
