@@ -28,7 +28,7 @@ Route::post('/login', function (Request $request) {
         ]);
 
         // Store the token as a cookie
-        $_COOKIE['auth_token'] = $token;
+        setcookie('auth_token', $token, time() + 3600, '/');
 
         return response()->json([
             'message' => 'Login successful!',
