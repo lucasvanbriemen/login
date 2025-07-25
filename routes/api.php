@@ -5,13 +5,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/user/token/{token}', function (Request $request, $token) {
 
-    return response()->json([
-        'message' => 'Token received',
-        'token' => $token,
-    ]);
-
     // Verify the token
     $token = DB::table('token')->where('token', $token)->first();
 
-    dd($token);
+    // Get the user associated with the token
+    if (!$token) {
+        return response()->json(['message' => 'Token not found'], 404);
+    }
+
+    $userID = $token->user_id;
+
+
+    $user = \App\Models\User::find($userID);
+
+
+    return response()->json([
+        'user' => $user,
+    ]);
 });
