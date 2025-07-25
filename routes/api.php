@@ -17,6 +17,7 @@ Route::get('/user/token/{token}', function (Request $request, $token) {
     // Get the expeation date time
     $expiresAt = $token->expires_at;
     if (now()->greaterThan($expiresAt)) {
+        DB::table('token')->where('token', $token->token)->delete();
         return response()->json(['message' => 'Token has expired'], 401);
     }
 
