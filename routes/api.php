@@ -3,11 +3,14 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
+Route::get('/user/token/{token}', function (Request $request, $token) {
 
-    if (!$request->user()) {
-        return response()->json(['message' => 'Unauthenticated'], 403);
-    }
 
-    return $request->user();
+    // Get the token from the request
+    $token = $request->input('token');
+
+    // Verify the token
+    $token = DB::table('token')->where('token', $token)->first();
+
+    dd($token);
 });
