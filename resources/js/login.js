@@ -1,7 +1,7 @@
 export default {
     init() {
         document.querySelectorAll(".change-form").forEach(element => element.addEventListener("click", this.changeForm));
-        document.querySelectorAll(".button").forEach(element => element.addEventListener("click", this.submitForm));
+        document.querySelectorAll("button").forEach(element => element.addEventListener("click", this.submitForm));
     },
 
     changeForm(e) {
