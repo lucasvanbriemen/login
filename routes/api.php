@@ -5,10 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/user/token/{token}', function (Request $request, $token) {
 
-
-    // Get the token from the request
-    $token = $request->input('token');
-
     return response()->json([
         'message' => 'Token received',
         'token' => $token,
