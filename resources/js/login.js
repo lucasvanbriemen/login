@@ -35,7 +35,7 @@ export default {
         .then(data => {
             // Get the redirect URL from the URL query parameter
             const urlParams = new URLSearchParams(window.location.search);
-            const redirectUrl = urlParams.get('from') || '/';
+            const redirectUrl = urlParams.get("from") || "/";
             if (data.success) {
                 window.location.href = redirectUrl;
             } else {
