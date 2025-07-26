@@ -6,13 +6,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
-Route::get('/', function () {
-    return view('login');
-})->name('login');
+Route::get("/", function () {
+    return view("login");
+})->name("login");
 
 
-Route::post('/login', function (Request $request) {
-    $credentials = $request->only('email', 'password');
+Route::post("/login", function (Request $request) {
+    $credentials = $request->only("email", "password");
 
     if (Auth::attempt($credentials)) {
         // User authenticated successfully
@@ -21,46 +21,46 @@ Route::post('/login', function (Request $request) {
 
         $token = Str::random(60);
         // store the token in the database
-        DB::table('token')->insert([
-            'token' => $token,
-            'user_id' => Auth::id(),
-            'expires_at' => now()->addDay(), // Example expiration time
+        DB::table("token")->insert([
+            "token" => $token,
+            "user_id" => Auth::id(),
+            "expires_at" => now()->addDay(), // Example expiration time
         ]);
 
         // Store the token as a cookie
-        setcookie('auth_token', $token, time() + 3600, '/', '.lucasvanbriemen.nl');
+        setcookie("auth_token", $token, time() + 3600, "/", ".lucasvanbriemen.nl");
 
         return response()->json([
-            'success' => true,
-            'message' => 'Login successful!',
+            "success" => true,
+            "message" => "Login successful!",
         ]);
     } else {
         return response()->json([
-            'success' => false,
-            'message' => 'Invalid login credentials!',
+            "success" => false,
+            "message" => "Invalid login credentials!",
         ], 401);
     }
 });
 
-Route::post('/logout', function () {
+Route::post("/logout", function () {
     auth()->logout(); // For session-based authentication
 
     return response()->json([
-        'message' => 'Successfully logged out!',
+        "message" => "Successfully logged out!",
     ]);
 });
 
-Route::post('/register', function (Request $request) {
+Route::post("/register", function (Request $request) {
     $data = $request->validate([
-        'name' => 'required',
-        'email' => 'required',
-        'password' => 'required',
+        "name" => "required",
+        "email" => "required",
+        "password" => "required",
     ]);
 
     $user = \App\Models\User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => bcrypt($data['password']),
+        "name" => $data["name"],
+        "email" => $data["email"],
+        "password" => bcrypt($data["password"]),
     ]);
 
     Auth::login($user);
