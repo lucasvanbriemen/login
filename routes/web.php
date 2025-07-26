@@ -31,10 +31,12 @@ Route::post('/login', function (Request $request) {
         setcookie('auth_token', $token, time() + 3600, '/', '.lucasvanbriemen.nl');
 
         return response()->json([
+            'success' => true,
             'message' => 'Login successful!',
         ]);
     } else {
         return response()->json([
+            'success' => false,
             'message' => 'Invalid login credentials!',
         ], 401);
     }

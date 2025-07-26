@@ -8,8 +8,8 @@
 
             <h1>Welcome Back!<span class='change-form' data-switch="register">Don't have an account?</span></h1>
 
-            <x-input type="email" name="email" label="Email" required autofocus />
-            <x-input type="password" name="password" label="Password" required />
+            <x-input type="email" name="email" label="Email" id="login-email" required autofocus />
+            <x-input type="password" name="password" label="Password" id="login-password" required />
             <button type="submit">Login</button>
         </div>
     </form>
@@ -20,9 +20,9 @@
 
             <h1>Create an Account<span class='change-form' data-switch="login">Already have an account?</span></h1>
 
-            <x-input type="text" name="name" label="Name" required />
-            <x-input type="email" name="email" label="Email" required />
-            <x-input type="password" name="password" label="Password" required />
+            <x-input type="text" name="name" label="Name" id='register-name' required />
+            <x-input type="email" name="email" label="Email" id='register-email' required />
+            <x-input type="password" name="password" label="Password" id='register-password' required />
 
             <button type="submit">Register</button>
         </div>

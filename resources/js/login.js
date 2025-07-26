@@ -33,15 +33,14 @@ export default {
         })
         .then(response => response.json())
         .then(data => {
+            // Get the redirect URL from the URL query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectUrl = urlParams.get('from') || '/';
             if (data.success) {
-                window.location.href = data.redirect;
+                window.location.href = redirectUrl;
             } else {
-                // Handle validation errors
-                console.error(data.errors);
+                alert(data.message);
             }
         })
-        .catch(error => {
-            console.error("Error:", error);
-        });
     },
 }
