@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title }}</title>
 
+    @vite(['resources/scss/root.scss', 'resources/js/root.js'])
     <link rel="icon" href="{{ asset('images/login.svg') }}">
 </head>
 
@@ -13,7 +14,5 @@
     <div id="app">
         {{ $slot }}
     </div>
-
-    @vite(['resources/scss/root.scss', 'resources/js/root.js'])
 </body>
 </html>

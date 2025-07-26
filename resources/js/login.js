@@ -2,6 +2,16 @@ export default {
     init() {
         document.querySelectorAll(".change-form").forEach(element => element.addEventListener("click", this.changeForm));
         document.querySelectorAll("button").forEach(element => element.addEventListener("click", this.submitForm));
+
+        // Set the side-image src based on the theme
+        const theme = window.theme.getTheme();
+        this.setImageSrcBasedOnTheme(theme);
+    },
+
+    setImageSrcBasedOnTheme(theme) {
+        const image = document.querySelector(".login-image");
+        const src = theme == "dark" ? "/images/login-dark.jpg" : "/images/login-light.jpg";
+        image.setAttribute("src", src);
     },
 
     changeForm(e) {

@@ -15,8 +15,6 @@ Route::post("/login", function (Request $request) {
     $credentials = $request->only("email", "password");
 
     if (Auth::attempt($credentials)) {
-        // User authenticated successfully
-
         $request->session()->regenerate();
 
         $token = Str::random(60);
