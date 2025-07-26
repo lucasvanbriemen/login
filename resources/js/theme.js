@@ -1,5 +1,5 @@
 export default {
-    theme: "light",
+    theme: "auto",
 
     colors: {
         "primary": {
