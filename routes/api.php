@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 Route::get('/user/token/{token}', function (Request $request, $token) {
 
@@ -22,7 +23,10 @@ Route::get('/user/token/{token}', function (Request $request, $token) {
     }
 
     $userID = $token->user_id;
-    $user = \App\Models\User::find($userID);
+    $user = User::find($userID);
+
+    $user->last_activity = now();
+    $user->save();
 
     return response()->json([
         'user' => $user,
