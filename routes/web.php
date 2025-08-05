@@ -25,8 +25,8 @@ Route::post("/login", function (Request $request) {
             "expires_at" => now()->addDay(), // Example expiration time
         ]);
 
-        // Store the token as a cookie
-        setcookie("auth_token", $token, time() + 3600, "/", ".lucasvanbriemen.nl");
+        // Store the token as a cookie for 10 days
+        setcookie("auth_token", $token, time() + 864000, "/", ".lucasvanbriemen.nl");
 
         return response()->json([
             "success" => true,
