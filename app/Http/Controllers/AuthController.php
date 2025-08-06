@@ -35,7 +35,7 @@ class AuthController extends Controller
             ]);
 
             $cookieExpiry = time() + (self::COOKIE_EXPIRY_DAYS * 24 * 60 * 60);
-            setcookie('auth_token', $token, $cookieExpiry, '/', self::COOKIE_DOMAIN);
+            setcookie('auth_token', $token, $cookieExpiry, '/', config('session.domain'));
 
             return response()->json([
                 'success' => true,
