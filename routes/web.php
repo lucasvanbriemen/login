@@ -1,65 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\AuthController;
 
-Route::get("/", function () {
-    return view("login");
-})->name("login");
-
-
-Route::post("/login", function (Request $request) {
-    $credentials = $request->only("email", "password");
-
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
-
-        $token = Str::random(60);
-        // store the token in the database
-        DB::table("token")->insert([
-            "token" => $token,
-            "user_id" => Auth::id(),
-            "expires_at" => now()->addDay(), // Example expiration time
-        ]);
-
-        // Store the token as a cookie for 10 days
-        setcookie("auth_token", $token, time() + 864000, "/", ".lucasvanbriemen.nl");
-
-        return response()->json([
-            "success" => true,
-            "message" => "Login successful!",
-        ]);
-    } else {
-        return response()->json([
-            "success" => false,
-            "message" => "Invalid login credentials!",
-        ], 401);
-    }
-});
-
-Route::post("/logout", function () {
-    auth()->logout(); // For session-based authentication
-
-    return response()->json([
-        "message" => "Successfully logged out!",
-    ]);
-});
-
-Route::post("/register", function (Request $request) {
-    $data = $request->validate([
-        "name" => "required",
-        "email" => "required",
-        "password" => "required",
-    ]);
-
-    $user = \App\Models\User::create([
-        "name" => $data["name"],
-        "email" => $data["email"],
-        "password" => bcrypt($data["password"]),
-    ]);
-
-    Auth::login($user);
-});
+Route::get('/', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('/register', [AuthController::class, 'register']);
