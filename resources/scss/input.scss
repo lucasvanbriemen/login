@@ -10,13 +10,13 @@
         border-radius: 1rem;
         border: 1px solid var(--border-color);
 
-        background-color: var(--background-one);
-        color: var(--text);
+        background-color: var(--background-color-one);
+        color: var(--text-color);
     }
 
     input:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px var(--background-one) inset !important;
-        -webkit-text-fill-color: var(--text) !important;
+        box-shadow: 0 0 0px 1000px var(--background-color-one) inset !important;
+        -webkit-text-fill-color: var(--text-color) !important;
     }
 
     label {
@@ -27,7 +27,7 @@
         pointer-events: none;
 
         background-color: transparent;
-        color: var(--text);
+        color: var(--text-color-secondary);
         border: none;
     }
 
@@ -36,9 +36,9 @@
         top: 0;
         font-size: 0.75rem;
 
-        background-color: var(--background-one);
-        border: 1px solid var(--primary);
-        color: var(--text);
+        background-color: var(--background-color-one);
+        border: 1px solid var(--primary-color);
+        color: var(--text-color);
 
         padding: 0.25rem 0.5rem;
         border-radius: 1rem;
