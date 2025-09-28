@@ -10,7 +10,7 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    public const TOKEN_EXPIRY_DAYS = 1;
+    public const TOKEN_EXPIRY_DAYS = 10;
     public const COOKIE_EXPIRY_DAYS = 10;
     public const TOKEN_LENGTH = 60;
 
