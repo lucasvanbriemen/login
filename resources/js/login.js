@@ -14,21 +14,6 @@ export default {
         image.setAttribute("src", src);
     },
 
-    changeForm(e) {
-        e.preventDefault();
-
-        const switchTo = e.target.dataset.switch;
-
-        if (switchTo == "login") {
-            document.querySelector("#app").classList.remove("register-form");
-            document.querySelector("#app").classList.add("login-form");
-            return;
-        }
-
-        document.querySelector("#app").classList.add("register-form");
-        document.querySelector("#app").classList.remove("login-form");
-    },
-
     submitForm(e) {
         e.preventDefault();
 

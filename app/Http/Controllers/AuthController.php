@@ -62,38 +62,4 @@ class AuthController extends Controller
             'message' => 'Successfully logged out!',
         ]);
     }
-
-    public function register(Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email|max:255',
-            'password' => 'required|string|min:8',
-        ]);
-
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-
-        Auth::login($user);
-
-        $token = Str::random(self::TOKEN_LENGTH);
-
-        DB::table('token')->insert([
-            'token' => $token,
-            'user_id' => $user->id,
-            'expires_at' => now()->addDays(self::TOKEN_EXPIRY_DAYS),
-        ]);
-
-        $cookieExpiry = time() + (self::COOKIE_EXPIRY_DAYS * 24 * 60 * 60);
-        setcookie('auth_token', $token, $cookieExpiry, '/', config('session.domain'));
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Registration successful!',
-            'token' => $token,
-        ]);
-    }
 }
