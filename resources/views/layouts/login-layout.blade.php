@@ -4,15 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title }}</title>
+    <title>Login</title>
 
-    @vite(['resources/scss/root.scss', 'resources/js/root.js'])
+    @vite(['resources/js/main.js'])
     <link rel="icon" href="{{ asset('images/login.svg') }}">
 </head>
 
-<body class="{{ $bodyClass }}">
-    <div id="app">
-        {{ $slot }}
-    </div>
+<body>
+    <div id="app"></div>
 </body>
 </html>
