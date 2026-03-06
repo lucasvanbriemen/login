@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import Input from './components/Input.svelte';
+    import { Input } from '@lucasvanbriemen/components'
 
     const themeUrl = "https://components.lucasvanbriemen.nl/api/colors?theme=THEME_NAME";
     let imageSrc = $state('/images/login-dark.jpg');
