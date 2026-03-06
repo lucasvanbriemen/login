@@ -1,17 +1,12 @@
 import { defineConfig } from 'vite';
-import fg from 'fast-glob';
 import laravel from 'laravel-vite-plugin';
-
-const files = fg.sync([
-    'resources/js/**/*.js',
-    'resources/scss/**/*.css',
-    'resources/scss/**/*.scss',
-]);
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 export default defineConfig({
     plugins: [
+        svelte(),
         laravel({
-            input: files,
+            input: ['resources/js/main.js'],
             refresh: true,
         }),
     ],
