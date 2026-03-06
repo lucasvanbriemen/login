@@ -49,17 +49,4 @@ class AuthController extends Controller
             'message' => 'Invalid login credentials!',
         ], 401);
     }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        setcookie('auth_token', '', time() - 3600, '/', config('session.domain'));
-
-        return response()->json([
-            'message' => 'Successfully logged out!',
-        ]);
-    }
 }
