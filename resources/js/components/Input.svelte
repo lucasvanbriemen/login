@@ -11,6 +11,7 @@
     .input-wrapper {
         position: relative;
         margin-top: 1rem;
+        width: 96%;
     }
 
     .input-wrapper input {
