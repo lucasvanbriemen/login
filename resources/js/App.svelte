@@ -80,10 +80,10 @@
     :global(body) {
         background-color: var(--background-color);
         color: var(--text-color);
-        font-family: 'Inter', sans-serif;
+        font-family: var(--font-family);
     }
 
-    :global(body *) {
+    :global(*) {
         transition: all 0.3s ease-in-out;
     }
 
@@ -91,7 +91,6 @@
         width: calc(100vw - 4rem);
         height: calc(100vh - 4rem);
         position: relative;
-        transition: all 0.3s ease-in-out;
         margin: 2rem;
         display: flex;
         gap: 2rem;
