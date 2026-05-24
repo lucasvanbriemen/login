@@ -121,9 +121,8 @@
         margin-bottom: 1.5rem;
     }
 
-    input {
-        max-width: calc(100% - 2rem);
-        overflow: hidden;
+    :global(input) {
+        box-sizing: border-box;
     }
 
     button {
