@@ -78,8 +78,8 @@
 
 <style>
     :global(body) {
-        background-color: var(--background-color);
-        color: var(--text-color);
+        background-color: var(--surface);
+        color: var(--on-surface-variant);
         font-family: var(--font-family);
     }
 
@@ -104,34 +104,31 @@
     }
 
     .form-contents {
-        background-color: var(--background-color-one);
+        background-color: var(--surface-at-1);
         padding: 2rem;
         border-radius: 2rem;
         width: 75%;
-        box-shadow: 0 0 4rem -3.5rem var(--primary-color-dark);
+        box-shadow: 0 0 4rem -3.5rem var(--primary);
     }
 
     .form-contents h1 {
-        color: var(--text-color);
+        color: var(--on-surface);
         font-size: 1.5rem;
         font-weight: bold;
         margin-bottom: 1.5rem;
     }
 
     button {
-        width: 50%;
+        width: 40%;
+        height: 3rem;
         padding: 0.75rem 1rem;
         margin-top: 1rem;
         border-radius: 1rem;
         border: none;
-        background-color: var(--primary-color);
-        color: var(--text-color);
+        background-color: var(--primary);
+        color: var(--on-primary);
         font-weight: bold;
         cursor: pointer;
-    }
-
-    button:hover {
-        background-color: var(--primary-color-dark);
     }
 
     .login-image {
