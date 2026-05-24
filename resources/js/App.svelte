@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { Input } from '@lucasvanbriemen/components'
 
-    const themeUrl = "https://components.lucasvanbriemen.nl/api/colors?theme=THEME_NAME";
+    const colorUrl = "https://components.lucasvanbriemen.nl/api/colors";
     let imageSrc = $state('/images/login-dark.jpg');
 
     function getTheme() {
@@ -14,12 +14,12 @@
         const theme = getTheme();
         document.documentElement.setAttribute("data-theme", theme);
 
-        const url = themeUrl.replace("THEME_NAME", theme);
-        const response = await fetch(url);
+        const response = await fetch(colorUrl);
         const colors = await response.json();
 
-        colors.forEach(color => {
-            document.documentElement.style.setProperty(`--${color.name}`, color.value);
+        Object.entries(colors).forEach(([name, color]) => {
+            const value = getTheme() === "dark" ? color.dark : color.light;
+            document.documentElement.style.setProperty(`--${name}`, value);
         });
 
         imageSrc = theme === "dark" ? "/images/login-dark.jpg" : "/images/login-light.jpg";
