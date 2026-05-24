@@ -138,6 +138,10 @@
         cursor: pointer;
     }
 
+    button:hover {
+        background-color: var(--primary-8);
+    }
+
     .login-image {
         position: absolute;
         top: 0;
