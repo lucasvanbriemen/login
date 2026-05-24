@@ -80,7 +80,10 @@
     :global(body) {
         background-color: var(--surface);
         color: var(--on-surface-variant);
-        font-family: var(--font-family);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        margin: 0;
+        padding: 0;
     }
 
     :global(*) {
@@ -116,6 +119,11 @@
         font-size: 1.5rem;
         font-weight: bold;
         margin-bottom: 1.5rem;
+    }
+
+    input {
+        max-width: calc(100% - 2rem);
+        overflow: hidden;
     }
 
     button {
@@ -156,7 +164,7 @@
         form {
             z-index: 100;
             height: 100%;
-            box-shadow: 0 0 4rem -2.5rem var(--primary-color-dark);
+            box-shadow: none;
         }
 
         .form-contents {
@@ -167,6 +175,7 @@
             width: 100%;
             left: 0;
             top: 0;
+            margin: 0;
             border-radius: 1rem;
         }
     }
