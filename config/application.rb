@@ -23,5 +23,22 @@ module LoginRuby
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # --- Shared UI (centralized helpers/partials/assets across projects) ---
+    # One directory on disk that every app reads from. No gem/bundle step:
+    # edit the source once, restart the apps, all of them pick it up.
+    # Override the location with SHARED_UI_PATH; otherwise auto-discover.
+    shared_ui = ENV.fetch("SHARED_UI_PATH") do
+      [
+        "/var/www/vhosts/ltvb.nl/shared-ui",         # server
+        File.expand_path("../../shared-ui", __dir__) # local checkout next to the app
+      ].find { |path| Dir.exist?(path) }
+    end
+
+    if shared_ui && Dir.exist?(shared_ui)
+      config.paths["app/views"]   << File.join(shared_ui, "views")
+      config.paths["app/helpers"] << File.join(shared_ui, "helpers")
+      config.assets.paths         << File.join(shared_ui, "assets")
+    end
   end
 end
