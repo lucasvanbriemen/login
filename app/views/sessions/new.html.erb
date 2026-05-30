@@ -1,5 +1,7 @@
 <% content_for :title, "Login" %>
 
+<div data-controller="page-alert" data-page-alert-message-value="Welcome to Login"></div>
+
 <form action="<%= session_path %>" method="post">
   <%= csrf_meta_tags %>
 
