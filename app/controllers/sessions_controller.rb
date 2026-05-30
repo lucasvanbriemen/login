@@ -38,13 +38,7 @@ class SessionsController < ApplicationController
       return render json: { error: "Invalid or expired token" }, status: :unauthorized
     end
 
-    render json: {
-      account: {
-        id: token.account.id,
-        email: token.account.email,
-        name: token.account.name
-      }
-    }
+    render json: token.account.as_json
   end
 
   private
