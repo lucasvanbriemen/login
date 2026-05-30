@@ -16,6 +16,14 @@ shared_ui = ENV.fetch("SHARED_UI_PATH") do
   ].find { |path| Dir.exist?(path) }
 end
 
-if shared_ui && Dir.exist?(File.join(shared_ui, "assets/controllers"))
-  pin_all_from File.join(shared_ui, "assets/controllers"), under: "controllers"
+# Shared JS modules live at <shared>/assets/js/**. Propshaft's asset root is
+# <shared>/assets, so their logical paths keep the "js/" prefix (e.g.
+# "js/objects/theme.js"). pin_all_from derives the asset path relative to the
+# pinned dir, which wouldn't match that prefix — so pin them under a clean
+# "objects" namespace with an explicit `to:` pointing at the real logical path.
+if shared_ui && Dir.exist?(File.join(shared_ui, "assets/js/objects"))
+  Dir.glob(File.join(shared_ui, "assets/js/objects/*.js")).each do |file|
+    name = File.basename(file, ".js")
+    pin "objects/#{name}", to: "js/objects/#{name}.js"
+  end
 end
