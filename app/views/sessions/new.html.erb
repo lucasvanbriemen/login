@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= f.hidden_field :redirect_to, value: params[:redirect] %>
 
-    <%= f.email_field :email, required: true %>
+    <%= f.email_field :email, required: true, autofocus: true %>
     <%= f.password_field :password, required: true %>
 
     <%= f.submit text: "Login" %>
