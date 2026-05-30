@@ -1,0 +1,14 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  >div {
+    width: 66%;
+  }
+
+  img {
+    width: 33%;
+  }
+}
