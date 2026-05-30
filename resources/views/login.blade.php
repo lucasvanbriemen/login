@@ -1,1 +1,0 @@
-@include('layouts.login-layout')
