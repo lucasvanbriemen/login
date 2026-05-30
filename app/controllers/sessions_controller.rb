@@ -23,8 +23,6 @@ class SessionsController < ApplicationController
       domain: :all
     }
 
-    session[:account_id] = account.id
-
     path = session_params[:redirect_to].presence || root_path
 
     redirect_to path.to_s + "?auth_token=#{token.value}", notice: "Logged in successfully", allow_other_host: true
