@@ -2,10 +2,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: calc(100vh - 1rem);
+  padding: 2rem;
 
-  >div {
+  gap: 2rem;
+
+  .form-wrapper {
     width: 66%;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    form {
+      background-color: var(--surface-at-1);
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 50%;
+
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    }
   }
 
   .login-image {
@@ -14,6 +30,7 @@ body {
     background-image: url("login-light.jpg");
     background-size: cover;
     background-position: center;
+    border-radius: 1rem;
 
     @media (prefers-color-scheme: dark) {
       background-image: url("login-dark.jpg");
