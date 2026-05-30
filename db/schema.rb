@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_30_093245) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_30_095308) do
   create_table "accounts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -19,4 +19,15 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_30_093245) do
     t.string "name", null: false
     t.index ["email"], name: "index_accounts_on_email", unique: true
   end
+
+  create_table "tokens", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "value", null: false
+    t.datetime "expires_at", null: false
+    t.integer "account_id", null: false
+    t.index ["account_id"], name: "index_tokens_on_account_id"
+  end
+
+  add_foreign_key "tokens", "accounts"
 end
