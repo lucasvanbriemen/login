@@ -8,7 +8,15 @@ body {
     width: 66%;
   }
 
-  img {
+  .login-image {
     width: 33%;
+    align-self: stretch;
+    background-image: url("login-light.jpg");
+    background-size: cover;
+    background-position: center;
+
+    @media (prefers-color-scheme: dark) {
+      background-image: url("login-dark.jpg");
+    }
   }
 }
