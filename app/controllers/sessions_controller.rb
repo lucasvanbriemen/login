@@ -15,7 +15,6 @@ class SessionsController < ApplicationController
       expires_at: Time.current + Token::TOKEN_DURATION
     )
 
-    # Store the token value in a cookie for authentication in subsequent requests
     cookies[:auth_token] = {
       value: token.value,
       expires: token.expires_at,
