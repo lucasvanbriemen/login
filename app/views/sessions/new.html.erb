@@ -1,18 +1,13 @@
 <% content_for :title, "Login" %>
 
-<%= form_for :session, url: session_path do |f| %>
+<%= form_for :session, url: session_path, builder: CustomFormBuilder do |f| %>
   <%= csrf_meta_tags %>
-
-  <%= f.label :email %>
-  <%= f.email_field :email, required: true %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password, required: true %>
-
   <%= f.hidden_field :redirect_to, value: params[:redirect] %>
 
-  <%= f.submit "Login" %>
-  <%= button text: "Login" %>
+  <%= f.email_field :email, required: true %>
+  <%= f.password_field :password, required: true %>
+
+  <%= f.submit text: "Login" %>
 
   <%= flash[:alert] %>
   <%= flash[:notice] %>
