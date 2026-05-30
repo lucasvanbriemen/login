@@ -20,7 +20,8 @@ class SessionsController < ApplicationController
       value: token.value,
       expires: token.expires_at,
       httponly: true,
-      secure: Rails.env.production?
+      secure: Rails.env.production?,
+      domain: :all
     }
 
     session[:account_id] = account.id
