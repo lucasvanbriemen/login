@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   root to: "sessions#new"
 
-  resource :session
+  resource :session, only: [:new, :create, :destroy]
+  get "session/:token", to: "sessions#show", as: :session_lookup
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
