@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     )
 
     # Store the token value in a cookie for authentication in subsequent requests
-    cookies.encrypted[:auth_token] = {
+    cookies[:auth_token] = {
       value: token.value,
       expires: token.expires_at,
       httponly: true,
