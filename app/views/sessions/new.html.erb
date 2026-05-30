@@ -9,6 +9,8 @@
   <label for="password">Password</label>
   <input type="password" name="password" id="password" required>
 
+  <input type="hidden" name="redirect_to" id="redirect_to" value="<%= params[:redirect] %>">
+
   <button type="submit">Login</button>
 
   <%= flash[:alert] %>

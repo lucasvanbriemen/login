@@ -24,7 +24,10 @@ class SessionsController < ApplicationController
     }
 
     session[:account_id] = account.id
-    redirect_to root_path, notice: "Logged in successfully"
+
+    path = params[:redirect_to] || root_path
+
+    redirect_to path.to_s + "?auth_token=#{token.value}", notice: "Logged in successfully"
   end
 
   def show
