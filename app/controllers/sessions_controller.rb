@@ -3,9 +3,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    account = Account.find_by(email: params[:email])
+    account = Account.find_by(email: session_params[:email])
 
-    if !account&.authenticate(params[:password])
+    if !account&.authenticate(session_params[:password])
       flash.now[:alert] = "Invalid email or password"
       return render :new, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
 
     session[:account_id] = account.id
 
-    path = params[:redirect_to] || root_path
+    path = session_params[:redirect_to].presence || root_path
 
     redirect_to path.to_s + "?auth_token=#{token.value}", notice: "Logged in successfully", allow_other_host: true
   end
@@ -44,5 +44,11 @@ class SessionsController < ApplicationController
         name: token.account.name
       }
     }
+  end
+
+  private
+
+  def session_params
+    params.fetch(:session, {}).permit(:email, :password, :redirect_to)
   end
 end

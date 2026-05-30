@@ -1,22 +1,5 @@
 <% content_for :title, "Login" %>
 
-<form action="<%= session_path %>" method="post">
-  <%= csrf_meta_tags %>
-
-  <label for="email">Email</label>
-  <input type="email" name="email" id="email" required>
-
-  <label for="password">Password</label>
-  <input type="password" name="password" id="password" required>
-
-  <input type="hidden" name="redirect_to" id="redirect_to" value="<%= params[:redirect] %>">
-
-  <%= button text: "Login" %>
-
-  <%= flash[:alert] %>
-  <%= flash[:notice] %>
-</form>
-
 <%= form_for :session, url: session_path do |f| %>
   <%= csrf_meta_tags %>
 
