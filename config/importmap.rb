@@ -27,3 +27,15 @@ if shared_ui && Dir.exist?(File.join(shared_ui, "assets/js/objects"))
     pin "objects/#{name}", to: "js/objects/#{name}.js"
   end
 end
+
+# Shared UI Stimulus controllers live at <shared>/assets/js/controllers/*.js
+# (logical path "js/controllers/<name>.js"). Pin them under the "controllers"
+# namespace so eagerLoadControllersFrom registers them next to the app's own
+# controllers — it only matches importmap keys ending in "_controller", so the
+# files must follow the *_controller.js naming convention.
+if shared_ui && Dir.exist?(File.join(shared_ui, "assets/js/controllers"))
+  Dir.glob(File.join(shared_ui, "assets/js/controllers/*.js")).each do |file|
+    name = File.basename(file, ".js")
+    pin "controllers/#{name}", to: "js/controllers/#{name}.js"
+  end
+end
