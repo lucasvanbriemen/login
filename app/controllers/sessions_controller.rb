@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
 
     path = params[:redirect_to] || root_path
 
-    redirect_to path.to_s + "?auth_token=#{token.value}", notice: "Logged in successfully"
+    redirect_to path.to_s + "?auth_token=#{token.value}", notice: "Logged in successfully", allow_other_host: true
   end
 
   def show
