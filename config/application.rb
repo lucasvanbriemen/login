@@ -50,9 +50,14 @@ module LoginRuby
       # `stylesheet_link_tag "<name>"`. Absolute input paths are kept as-is by
       # dartsass-rails (Pathname#join with an absolute path returns it).
       # Skip Sass partials (`_foo.scss`) — they're @use/@import-only, not builds.
-      Dir.glob(File.join(shared_ui, "assets", "*.scss")).each do |scss|
+      # Record each built stylesheet's name so the layout can auto-link them
+      # (`config.x.shared_stylesheets`) instead of hardcoding `stylesheet_link_tag "ui"`.
+      config.x.shared_stylesheets = []
+      Dir.glob(File.join(shared_ui, "assets", "scss", "*.scss")).sort.each do |scss|
         next if File.basename(scss).start_with?("_")
-        config.dartsass.builds[scss] = "#{File.basename(scss, ".scss")}.css"
+        name = File.basename(scss, ".scss")
+        config.dartsass.builds[scss] = "#{name}.css"
+        config.x.shared_stylesheets << name
       end
     end
 

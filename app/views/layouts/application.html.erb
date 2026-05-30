@@ -17,9 +17,12 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%# Local app styles (app/assets/stylesheets) + every shared stylesheet,
+        auto-discovered in config/application.rb. %>
     <%= stylesheet_link_tag :application, "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "ui", "data-turbo-track": "reload" %>
+    <% Array(Rails.application.config.x.shared_stylesheets).each do |sheet| %>
+      <%= stylesheet_link_tag sheet, "data-turbo-track": "reload" %>
+    <% end %>
     <%= javascript_importmap_tags %>
   </head>
 
