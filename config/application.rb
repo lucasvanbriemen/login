@@ -30,8 +30,8 @@ module LoginRuby
     # Override the location with SHARED_UI_PATH; otherwise auto-discover.
     shared_ui = ENV.fetch("SHARED_UI_PATH") do
       [
-        "/var/www/vhosts/ltvb.nl/shared-ui",         # server
-        File.expand_path("../../shared-ui", __dir__) # local checkout next to the app
+        "/var/www/vhosts/ltvb.nl/ui-components",         # server
+        File.expand_path("../../components-ui", __dir__) # local checkout next to the app
       ].find { |path| Dir.exist?(path) }
     end
 
