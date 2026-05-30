@@ -24,6 +24,10 @@ module LoginRuby
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    # Dart Sass compiles app/assets/stylesheets/*.scss into app/assets/builds/.
+    # Keep Propshaft from also serving the raw .scss source files publicly.
+    config.assets.excluded_paths << Rails.root.join("app/assets/stylesheets")
+
     # --- Shared UI (centralized helpers/partials/assets across projects) ---
     # One directory on disk that every app reads from. No gem/bundle step:
     # edit the source once, restart the apps, all of them pick it up.
@@ -31,7 +35,7 @@ module LoginRuby
     shared_ui = ENV.fetch("SHARED_UI_PATH") do
       [
         "/var/www/vhosts/ltvb.nl/ui-components",         # server
-        File.expand_path("../../components-ui", __dir__) # local checkout next to the app
+        File.expand_path("../../ui-components", __dir__) # local checkout next to the app
       ].find { |path| Dir.exist?(path) }
     end
 

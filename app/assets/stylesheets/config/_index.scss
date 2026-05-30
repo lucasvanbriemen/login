@@ -1,0 +1,3 @@
+// Folder barrel: forward every file in config/.
+// Add a partial here → it's available to anyone who `@use "config"`.
+@forward "variables";

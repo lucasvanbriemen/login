@@ -1,0 +1,15 @@
+// Partials that need tokens pull them in themselves (Sass modules are per-file).
+@use "../config" as *;
+
+body {
+  background: $color-bg;
+  color: $color-fg;
+  font-family: system-ui, sans-serif;
+  margin: 0;
+}
+
+main {
+  max-width: 28rem;
+  margin: 4rem auto;
+  padding: 2rem;
+}
