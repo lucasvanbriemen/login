@@ -42,6 +42,11 @@ body {
     
     .form-wrapper {
       z-index: 1;
+      width: 100%;
+      
+      .login-form {
+        width: 100%;
+      }
     }
 
     .login-image {
