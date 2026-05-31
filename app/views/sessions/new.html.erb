@@ -2,6 +2,7 @@
 
 <div class="form-wrapper">
   <%= form_for :session, url: session_path, builder: CustomFormBuilder, html: { class: "login-form", data: { turbo: false } } do |f| %>
+    <h1>Hi there!</h1>  
     <%= csrf_meta_tags %>
     <%= f.hidden_field :redirect_to, value: params[:redirect] %>
 
