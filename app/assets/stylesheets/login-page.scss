@@ -36,4 +36,19 @@ body {
       background-image: url("login-dark.jpg");
     }
   }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    
+    .form-wrapper {
+      z-index: 1;
+    }
+
+    .login-image {
+      position: absolute;
+      height: calc(100% - 2rem);
+      width: calc(100% - 2rem);
+      inset: 1rem;
+    }
+  }
 }
