@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   root to: "sessions#new"
 
   resource :session, only: [:new, :create, :destroy]
-  get "session/:token", to: "sessions#show", as: :session_lookup
+  # `:token` is optional: a tokenless lookup returns the BASE (anonymous)
+  # permission tree, so consumers can offer a logged-out, read-only view.
+  get "session(/:token)", to: "sessions#show", as: :session_lookup
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest

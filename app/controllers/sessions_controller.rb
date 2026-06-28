@@ -32,13 +32,14 @@ class SessionsController < ApplicationController
     token = Token.find_by(value: params[:token])
 
     if token.nil? || token.expires_at.past?
-      return render json: { error: "Invalid or expired token" }, status: :unauthorized
+      return render json: { isloggedin: false, permissions: Permission::BASE }
     end
 
     account = token.account
 
     render json: account.as_json(except: :password_digest).merge(
-      permissions: account.permissions
+      permissions: account.permissions,
+      isloggedin: true
     )
   end
 
