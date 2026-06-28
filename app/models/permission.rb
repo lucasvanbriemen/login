@@ -14,8 +14,19 @@ class Permission
   # add a new role by adding a new key here.
   ROLES = {
     admin: %i[
+      :manage_apps,
+      :manage_accounts,
+      :access_email,
+      :access_private_repositories,
+      :create_items,
+      :view_notifications,
+      :update_items,
     ],
-    member: %i[
+    student: %i[
+      :access_student_dashboard
+    ],
+    teacher: %i[
+      :access_teacher_dashboard
     ],
     unknown: %i[]
   }.freeze
