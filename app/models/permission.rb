@@ -15,26 +15,27 @@ class Permission
   # add a group by nesting another hash; add a role via a new top-level key.
   ROLES = {
     admin: {
-      apps:     %i[manage_apps],
-      accounts: %i[manage_accounts],
-      email:    %i[access_email],
+      apps:     %i[crud],
+      accounts: %i[crud],
+      email:    %i[crud],
       github: {
-        repositories: {
-          access:        %i[access_private_repositories],
-          items:         %i[create_items update_items],
-          notifications: %i[view_notifications]
-        }
+        repositories: %i[crud],
+        items:        %i[crud],
+        notifications:  %i[crud]
       },
       music: {
-        playlists: %i[create_playlists update_playlists],
-        songs:     %i[create_songs update_songs]
-      }
+        playlists: %i[crud],
+        songs:     %i[crud]
+      },
+      student_portal: %i[crud],
+      teacher_portal: %i[crud]
+
     },
     student: {
-      dashboard: %i[access_student_dashboard]
+      student_portal: %i[crud]
     },
     teacher: {
-      dashboard: %i[access_teacher_dashboard]
+      teacher_portal: %i[crud]
     },
     unknown: {}
   }.freeze
