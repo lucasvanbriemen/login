@@ -19,7 +19,7 @@ class Permission
 
   # Every app/area, listed once. Values are the DEFAULT operations (none here).
   BASE = {
-    apps:     [],
+    apps:     %i[read],
     accounts: [],
     email:    [],
     github: {
