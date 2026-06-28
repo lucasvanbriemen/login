@@ -13,28 +13,28 @@ class Permission
   # Add a new capability by adding its symbol to the relevant role(s);
   # add a new role by adding a new key here.
   ROLES = {
-    admin: %i[
+    admin: [
       :manage_apps,
       :manage_accounts,
       :access_email,
       :access_private_repositories,
       :create_items,
       :view_notifications,
-      :update_items,
+      :update_items
     ],
-    student: %i[
+    student: [
       :access_student_dashboard
     ],
-    teacher: %i[
+    teacher: [
       :access_teacher_dashboard
     ],
-    unknown: %i[]
+    unknown: []
   }.freeze
 
   # Role assigned when the `role` column is blank (the schema default is "").
   DEFAULT_ROLE = :unknown
 
   def self.for(role)
-    ROLES.fetch(role.presence&.to_sym || DEFAULT_ROLE)
+    ROLES.fetch(role.presence&.to_sym || DEFAULT_ROLE, [])
   end
 end
