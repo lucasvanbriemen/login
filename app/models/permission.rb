@@ -60,17 +60,13 @@ class Permission
     },
     teacher: {
       teacher_portal: CRUD
-    },
-    unknown: {}
+    }
   }.freeze
-
-  # Role used when the `role` column is blank (the schema default is "").
-  DEFAULT_ROLE = :unknown
 
   # Full permission tree for a role: BASE with the role's overrides applied.
   # Accepts the `role` string from the accounts table (e.g. "admin").
   def self.for(role)
-    overrides = ROLE_PERMISSIONS.fetch(role.presence&.to_sym || DEFAULT_ROLE, {})
+    overrides = ROLE_PERMISSIONS.fetch(role.presence&.to_sym || BASE)
     BASE.deep_merge(overrides)
   end
 end
