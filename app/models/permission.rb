@@ -66,7 +66,7 @@ class Permission
   # Full permission tree for a role: BASE with the role's overrides applied.
   # Accepts the `role` string from the accounts table (e.g. "admin").
   def self.for(role)
-    overrides = ROLE_PERMISSIONS.fetch(role.presence&.to_sym || BASE)
+    overrides = ROLE_PERMISSIONS.fetch(role.presence&.to_sym, {})
     BASE.deep_merge(overrides)
   end
 end
