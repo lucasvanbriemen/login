@@ -35,7 +35,11 @@ class SessionsController < ApplicationController
       return render json: { error: "Invalid or expired token" }, status: :unauthorized
     end
 
-    render json: token.account.as_json
+    account = token.account
+
+    render json: account.as_json(except: :password_digest).merge(
+      permissions: Permission.for(account).permissions
+    )
   end
 
   private
