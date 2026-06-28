@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
     account = token.account
 
     render json: account.as_json(except: :password_digest).merge(
-      permissions: Permission.for(account).permissions
+      permissions: account.permissions
     )
   end
 
