@@ -2,51 +2,90 @@
 # grouped by the application (and sub-area) the permission applies to.
 #
 # This is a plain Ruby class (not an ActiveRecord model) — roles live in the
-# `accounts.role` string column, and the mapping below is the single source of
-# truth for what each role is allowed to do.
+# `accounts.role` string column.
 #
-# Groups can nest arbitrarily deep. Leaves are arrays of permission symbols.
+# Structure:
+#   * BASE defines every app/area once. It is the default (what `unknown` gets).
+#   * Each entry in ROLE_PERMISSIONS only declares what that role OVERRIDES;
+#     it is deep-merged onto BASE, so new apps only need to be added to BASE.
+#   * Each leaf is a list of allowed operations. CRUD is shorthand for all four.
+#     Partial access is just a subset, e.g. %i[read] or %i[create read].
 #
 # Usage:
-#   Permission.for("admin")                  # => full nested hash
+#   Permission.for("admin")                                  # => full nested hash
+#   Permission.for_path("admin", :github, :repositories)     # => [:create, :read, ...]
+#   Permission.allows?("admin", %i[github repositories], :delete) # => true / false
 class Permission
-  # Map each role to its permissions, grouped by application and sub-area.
-  # Add a capability by adding its symbol to the relevant leaf array;
-  # add a group by nesting another hash; add a role via a new top-level key.
-  ROLES = {
+  # The four operations. Use CRUD as shorthand for "full access" on a leaf.
+  CRUD = %i[create read update delete].freeze
+
+  # Every app/area, listed once. Values are the DEFAULT operations (none here).
+  BASE = {
+    apps:     [],
+    accounts: [],
+    email:    [],
+    github: {
+      repositories:         %i[read],
+      private_repositories: [],
+      items:                %i[read],
+      notifications:        []
+    },
+    music: {
+      playlists: [],
+      songs:     []
+    },
+    student_portal: [],
+    teacher_portal: []
+  }.freeze
+
+  # Per-role overrides, deep-merged onto BASE. Only list what differs.
+  ROLE_PERMISSIONS = {
     admin: {
-      apps:     %i[crud],
-      accounts: %i[crud],
-      email:    %i[crud],
+      apps:     CRUD,
+      accounts: CRUD,
+      email:    CRUD,
       github: {
-        repositories: %i[crud],
-        items:        %i[crud],
-        notifications:  %i[crud]
+        repositories:         CRUD,
+        private_repositories: CRUD,
+        items:                CRUD,
+        notifications:        CRUD
       },
       music: {
-        playlists: %i[crud],
-        songs:     %i[crud]
+        playlists: CRUD,
+        songs:     CRUD
       },
-      student_portal: %i[crud],
-      teacher_portal: %i[crud]
-
+      student_portal: CRUD,
+      teacher_portal: CRUD
     },
     student: {
-      student_portal: %i[crud]
+      student_portal: CRUD
     },
     teacher: {
-      teacher_portal: %i[crud]
+      teacher_portal: CRUD
     },
     unknown: {}
   }.freeze
 
-  # Role assigned when the `role` column is blank (the schema default is "").
+  # Role used when the `role` column is blank (the schema default is "").
   DEFAULT_ROLE = :unknown
 
-  # All permissions for a role, grouped (nested) by app/area.
+  # Full permission tree for a role: BASE with the role's overrides applied.
   # Accepts the `role` string from the accounts table (e.g. "admin").
-  # Blank roles fall back to DEFAULT_ROLE; unknown roles get {}.
   def self.for(role)
-    ROLES.fetch(role.presence&.to_sym || DEFAULT_ROLE, {})
+    overrides = ROLE_PERMISSIONS.fetch(role.presence&.to_sym || DEFAULT_ROLE, {})
+    BASE.deep_merge(overrides)
+  end
+
+  # The operations allowed at a given path, e.g. for_path("admin", :github, :items).
+  # Returns [] when the path doesn't resolve to a leaf.
+  def self.for_path(role, *path)
+    node = self.for(role).dig(*path)
+    node.is_a?(Array) ? node : []
+  end
+
+  # Whether a role may perform `operation` at `path`,
+  # e.g. allows?("admin", %i[github repositories], :delete).
+  def self.allows?(role, path, operation)
+    for_path(role, *path).include?(operation)
   end
 end
