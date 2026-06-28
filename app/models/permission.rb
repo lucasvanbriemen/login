@@ -27,29 +27,7 @@ class Permission
   # Role assigned when the `role` column is blank (the schema default is "").
   DEFAULT_ROLE = :guest
 
-  attr_reader :role
-
-  # Build a Permission for an account (or any object responding to #role).
-  def self.for(account)
-    new(account.role)
-  end
-
-  # All defined role names, e.g. [:admin, :member, :guest].
-  def self.roles
-    ROLES.keys
-  end
-
-  def initialize(role)
-    @role = role.present? ? role.to_sym : DEFAULT_ROLE
-  end
-
-  # True if this role grants the given permission.
-  def can?(permission)
-    permissions.include?(permission)
-  end
-
-  # All permissions granted to this role (empty for unknown roles).
-  def permissions
-    ROLES.fetch(role, [])
+  def self.for(role)
+    ROLES.fetch(role.presence&.to_sym || DEFAULT_ROLE, [])
   end
 end

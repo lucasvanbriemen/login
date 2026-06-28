@@ -4,6 +4,6 @@ class Account < ApplicationRecord
   has_many :tokens, dependent: :destroy
 
   def permissions
-    Permission.for(self).permissions
+    Permission.for(role)
   end
 end
