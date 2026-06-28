@@ -14,20 +14,16 @@ class Permission
   # add a new role by adding a new key here.
   ROLES = {
     admin: %i[
-      manage_accounts
-      manage_roles
-      view_dashboard
     ],
     member: %i[
-      view_dashboard
     ],
-    guest: %i[]
+    unknown: %i[]
   }.freeze
 
   # Role assigned when the `role` column is blank (the schema default is "").
-  DEFAULT_ROLE = :guest
+  DEFAULT_ROLE = :unknown
 
   def self.for(role)
-    ROLES.fetch(role.presence&.to_sym || DEFAULT_ROLE, [])
+    ROLES.fetch(role.presence&.to_sym || DEFAULT_ROLE)
   end
 end
