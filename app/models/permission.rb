@@ -9,8 +9,6 @@
 #
 # Usage:
 #   Permission.for("admin")                  # => full nested hash
-#   Permission.for_app("admin", :github)     # => the github subtree
-#   Permission.flat_for("admin")             # => [:manage_apps, :create_items, ...]
 class Permission
   # Map each role to its permissions, grouped by application and sub-area.
   # Add a capability by adding its symbol to the relevant leaf array;
@@ -49,24 +47,5 @@ class Permission
   # Blank roles fall back to DEFAULT_ROLE; unknown roles get {}.
   def self.for(role)
     ROLES.fetch(role.presence&.to_sym || DEFAULT_ROLE, {})
-  end
-
-  # One application's (or area's) subtree, e.g. for_app("admin", :github).
-  def self.for_app(role, app)
-    self.for(role).fetch(app, {})
-  end
-
-  # Flat list of every permission a role has, regardless of nesting depth.
-  def self.flat_for(role)
-    flatten(self.for(role))
-  end
-
-  # Recursively collect permission symbols from a (possibly nested) group.
-  def self.flatten(group)
-    case group
-    when Array then group
-    when Hash  then group.values.flat_map { |v| flatten(v) }
-    else []
-    end
   end
 end
