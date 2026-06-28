@@ -13,8 +13,6 @@
 #
 # Usage:
 #   Permission.for("admin")                                  # => full nested hash
-#   Permission.for_path("admin", :github, :repositories)     # => [:create, :read, ...]
-#   Permission.allows?("admin", %i[github repositories], :delete) # => true / false
 class Permission
   # The four operations. Use CRUD as shorthand for "full access" on a leaf.
   CRUD = %i[create read update delete].freeze
@@ -74,18 +72,5 @@ class Permission
   def self.for(role)
     overrides = ROLE_PERMISSIONS.fetch(role.presence&.to_sym || DEFAULT_ROLE, {})
     BASE.deep_merge(overrides)
-  end
-
-  # The operations allowed at a given path, e.g. for_path("admin", :github, :items).
-  # Returns [] when the path doesn't resolve to a leaf.
-  def self.for_path(role, *path)
-    node = self.for(role).dig(*path)
-    node.is_a?(Array) ? node : []
-  end
-
-  # Whether a role may perform `operation` at `path`,
-  # e.g. allows?("admin", %i[github repositories], :delete).
-  def self.allows?(role, path, operation)
-    for_path(role, *path).include?(operation)
   end
 end
