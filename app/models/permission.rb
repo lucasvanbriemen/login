@@ -26,6 +26,10 @@ class Permission
           items:         %i[create_items update_items],
           notifications: %i[view_notifications]
         }
+      },
+      music: {
+        playlists: %i[create_playlists update_playlists],
+        songs:     %i[create_songs update_songs]
       }
     },
     student: {
