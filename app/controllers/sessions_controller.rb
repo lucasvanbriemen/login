@@ -69,12 +69,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  # The browser keeps its token in a cookie; native clients send the one they
-  # were handed at login back as a bearer token.
-  def revocable_token
-    cookies[:auth_token].presence || request.headers["Authorization"].to_s[/\ABearer (.+)\z/, 1]
-  end
-
   def session_params
     params.fetch(:session, {}).permit(:email, :password, :redirect_to)
   end
