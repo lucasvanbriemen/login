@@ -10,7 +10,9 @@ class SessionsController < ApplicationController
   def create
     account = Account.find_by(email: session_params[:email])
 
-    return deny_login unless account&.authenticate(session_params[:password])
+    return deny_login unless account
+
+    return deny_login unless account.authenticate(session_params[:password])
 
     token = account.tokens.create!(
       value: SecureRandom.hex(32),
