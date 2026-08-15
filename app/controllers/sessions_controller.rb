@@ -18,9 +18,6 @@ class SessionsController < ApplicationController
     )
 
     respond_to do |format|
-      # No cookie for JSON callers: they hold the token themselves, and the
-      # expiry goes with it so the client can log out on its own once the week
-      # is up instead of waiting to be refused.
       format.json do
         render json: {
           token: token.value,
@@ -42,18 +39,6 @@ class SessionsController < ApplicationController
 
         redirect_to path.to_s + "?auth_token=#{token.value}", notice: "Logged in successfully", allow_other_host: true
       end
-    end
-  end
-
-  # Routed since the beginning but never implemented. Revoking the token is the
-  # only way to end a session early: it is valid for a week and never refreshed.
-  def destroy
-    Token.find_by(value: revocable_token)&.destroy
-    cookies.delete(:auth_token, domain: :all)
-
-    respond_to do |format|
-      format.json { head :no_content }
-      format.html { redirect_to root_path, notice: "Logged out" }
     end
   end
 
